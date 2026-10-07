@@ -1,0 +1,54 @@
+{
+  "name": "knowledge",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 4315",
+    "build": "npm run validate && next build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "validate": "tsx scripts/validate-content.ts",
+    "preview": "node scripts/serve.mjs",
+    "predev": "npm run validate",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@fontsource-variable/noto-sans-kr": "^5.3.0",
+    "@fontsource-variable/noto-serif-kr": "^5.3.0",
+    "d3-scale": "^4.0.2",
+    "d3-shape": "^3.2.0",
+    "katex": "^0.19.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.0",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "yaml": "^2.8.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.56.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-shape": "^3.1.7",
+    "@types/katex": "^0.16.7",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "prettier": "^3.9.9",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "overrides": {
+    "postcss": "^8.5.29",
+    "katex": "$katex"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

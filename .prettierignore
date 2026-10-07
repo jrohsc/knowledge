@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+public/data
+.openai
+package-lock.json
+playwright-report
+test-results
+content/articles
