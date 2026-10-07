@@ -39,7 +39,7 @@ npm run preview
 ## 제공 기능
 
 - 매일 날짜에 따라 바뀌는 역사·철학·과학·수학 네 분야의 읽기 목록
-- 14개 완성된 한국어 MDX 기사, 글마다 5개 핵심 요점과 3개 개념 질문
+- 21개 완성된 한국어 MDX 기사, 글마다 5개 핵심 요점과 3개 개념 질문
 - 한국어·영어·별칭 검색, Cmd/Ctrl+K, 키보드 탐색과 검색창 포커스 관리
 - 미분의 할선/접선, 만유인력, 입자 분포, 동전 반복 실험, 자연선택 비율, 전자껍질, DNA 발현 과정 등 SVG 설명
 - 지역별 평행 타임라인, 기간 선택·확대·이동, 같은 연도의 문명 비교
@@ -185,3 +185,5 @@ NEXT_PUBLIC_BASE_PATH=/new-repository npm run preview
 기술 설정 참고: [Next.js basePath](https://nextjs.org/docs/pages/api-reference/config/next-config-js/basePath), [Next.js static export 예제](https://github.com/vercel/next.js/tree/canary/examples/with-static-export), [GitHub Pages 사용자 정의 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 홈페이지의 **큰 그림**에서 역사·철학·과학·수학을 선택하거나 세 가지 분야 간 읽기 경로를 재생할 수 있습니다. **전체 목차**로 전환하면 모든 글로 바로 이동합니다. 14개 글에는 개념을 설명하는 세 장면 SVG 삽화를 제공합니다. 확장 방법은 [시각화 가이드](docs/VISUALIZATIONS.md)를 참고하세요.
+
+분야별 확장: 탐색 페이지의 추천 읽기 순서는 `content/subject-trails.ts`에서 관리합니다. 7개 기초 개념(계몽주의·훈민정음·경험론과 합리론·에너지 보존·화학 결합·세포·적분)을 추가했으며, 새 개념도는 `FoundationVisual`에서 제공합니다.

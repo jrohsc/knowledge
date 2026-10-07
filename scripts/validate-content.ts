@@ -1,3 +1,4 @@
+import { subjectTrails } from "../content/subject-trails";
 import assert from "node:assert/strict";
 import katex from "katex";
 import fs from "node:fs";
@@ -31,6 +32,7 @@ const visuals = [
   "history",
   "argument",
   "industry",
+  "foundation",
 ];
 for (const { file, data: d, content } of articles) {
   const prefix = `${file}: `;
@@ -129,4 +131,13 @@ for (const connection of readingConnections) {
   assert.ok(connection.steps.length >= 2);
   for (const step of connection.steps)
     assert.ok(ids.has(step.topic), `읽기 경로의 글 참조: ${step.topic}`);
+}
+
+for (const [subject, trail] of Object.entries(subjectTrails)) {
+  assert.ok(subjects.some((s) => s.id === subject));
+  for (const id of trail.topics)
+    assert.ok(
+      articles.some((a) => a.data.id === id && a.data.subject === subject),
+      `읽기 순서의 분야/글 참조: ${id}`,
+    );
 }

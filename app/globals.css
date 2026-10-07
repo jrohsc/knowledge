@@ -3880,3 +3880,69 @@ button {
 :focus-visible {
   outline-width: 3px;
 }
+/* Subject trails provide orientation before the article catalog. */
+.subject-trail {
+  padding: 20px 0;
+  margin: 12px 0 20px;
+  border-block: 1px solid var(--line);
+}
+.subject-trail h3 {
+  font: 18px/1.7 var(--serif);
+  margin: 7px 0 16px;
+}
+.subject-trail ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin: 0;
+  padding: 0;
+}
+.subject-trail li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.subject-trail li > span {
+  color: var(--subject);
+  font-size: 11px;
+}
+.subject-trail a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 13px;
+}
+.subject-trail small {
+  display: block;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.foundation-svg {
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  height: auto;
+  color: var(--ink);
+  fill: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+}
+.foundation-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.foundation-tabs button[aria-pressed="true"] {
+  background: var(--accent-wash);
+  border-color: var(--green);
+  color: var(--green);
+}
+.foundation-explanation {
+  flex-basis: 100%;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.9;
+}

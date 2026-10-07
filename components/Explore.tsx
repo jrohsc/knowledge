@@ -1,4 +1,5 @@
 "use client";
+import { subjectTrails } from "@/content/subject-trails";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Search } from "lucide-react";
@@ -99,6 +100,32 @@ export function Explore({ topics }: { topics: Topic[] }) {
                     </div>
                     <p>{s.description}</p>
                   </header>
+                  {!query && subjectTrails[s.id] && (
+                    <nav
+                      className="subject-trail"
+                      aria-label={`${s.title} 추천 읽기 순서`}
+                    >
+                      <span className="eyebrow">이 순서로 연결해 읽기</span>
+                      <h3>{subjectTrails[s.id].question}</h3>
+                      <ol>
+                        {subjectTrails[s.id].topics.map((id, i) => (
+                          <li key={id}>
+                            <span aria-hidden="true">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <Link href={`/topic/${id}/`}>
+                              {topics.find((t) => t.id === id)?.title}
+                              <ArrowUpRight size={13} />
+                            </Link>
+                          </li>
+                        ))}
+                      </ol>
+                      <small>
+                        개념을 연결하는 추천 순서이며 연속된 연대기를 뜻하지는
+                        않습니다.
+                      </small>
+                    </nav>
+                  )}
                   <div className="category-index">
                     {s.categories.map((c) => {
                       const count = topics.filter(

@@ -56,3 +56,9 @@ SVG는 `viewBox`를 사용합니다. `role="img"`와 설명적인 `aria-label`�
 홈페이지 `BigPictureMap`은 네 분야의 관점과 단계별 읽기 경로를 보여줍니다. `content/learning-paths.ts`에서 경로, 글 ID, 연결 이유를 추가합니다. 재생은 사용자가 시작하며 이전·다음·일시 정지를 지원합니다. 화살표는 읽기 순서이며 역사적 인과와 구분합니다.
 
 `<ConceptSketch topic="newton-laws" />`는 세 장면으로 개념을 설명합니다. `content/illustrations.ts`에 제목·장면 설명·해석의 한계를 적고, `components/visuals/SketchDrawing.tsx`에 SVG 장면을 추가합니다. Person, Arrow, Book 등의 기본 요소를 재사용할 수 있습니다. 그림의 의미는 SVG 밖의 한국어 본문으로도 제공하며 색과 움직임에만 의존하지 않습니다. 각 새 글에 동일한 그림을 강제하지 않고 개념에 맞는 구도를 선택합니다.
+
+## 기초 개념 확장
+
+`<FoundationVisual topic="integral" />`은 정적분의 왼쪽 리만 합을, `topic="energy"`는 위치·운동·내부 에너지의 장부를 보여줍니다. `hangul`, `chemical-bond`, `cell`은 조합·결합 유형·세포 부분을 선택해 설명을 살펴봅니다. `enlightenment`, `empiricism`은 핵심 질문을 비교하는 SVG를 제공합니다. 모든 조작은 HTML 버튼·슬라이더로 제공하며 그림의 가정과 한계를 캡션에 명시합니다.
+
+분야별 읽기 순서는 `content/subject-trails.ts`, 관계의 의미는 `content/relationships.ts`에서 관리합니다. 검증 스크립트가 글 ID와 분야의 일치를 확인합니다.

@@ -18,3 +18,5 @@ export {
 } from "./primitives";
 
 export { ConceptSketch } from "./ConceptSketch";
+
+export { FoundationVisual } from "./FoundationVisual";

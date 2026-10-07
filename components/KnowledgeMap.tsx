@@ -170,10 +170,13 @@ export function KnowledgeMap({ topics }: { topics: Topic[] }) {
           <span>세 가지 생각의 길</span>
         </div>
         {[
-          { title: "운동에서 변화율로", ids: ["newton-laws", "derivative"] },
+          {
+            title: "운동에서 변화와 누적으로",
+            ids: ["newton-laws", "derivative", "integral"],
+          },
           {
             title: "분자에서 생명의 변화로",
-            ids: ["periodic-table", "dna", "evolution"],
+            ids: ["periodic-table", "chemical-bond", "dna", "evolution"],
           },
           {
             title: "기계에서 확률의 세계로",

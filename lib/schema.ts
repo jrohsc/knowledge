@@ -12,7 +12,8 @@ export type VisualKind =
   | "periodic"
   | "history"
   | "argument"
-  | "industry";
+  | "industry"
+  | "foundation";
 export interface Question {
   prompt: string;
   options: string[];

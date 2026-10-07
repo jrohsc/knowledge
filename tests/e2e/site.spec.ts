@@ -14,6 +14,13 @@ const articles = [
   "periodic-table",
   "derivative",
   "probability",
+  "enlightenment",
+  "hangul",
+  "empiricism",
+  "energy",
+  "chemical-bond",
+  "cell",
+  "integral",
 ];
 test("정적 자원과 모든 직접 기사 URL을 /knowledge/ 아래에서 제공한다", async ({
   page,
@@ -174,6 +181,8 @@ test("지식 지도는 관계를 설명하고 중심을 전환한다", async ({ 
   await expect(page.locator(".map-neighbors")).toContainText("미분");
   await page.getByRole("button", { name: "이 지식을 중심으로" }).click();
   await expect(page.locator(".map-center")).toContainText("미분");
+  await expect(page.locator(".map-neighbors")).toContainText("적분");
+  await page.getByLabel("연결 분야").selectOption("world-history");
   await expect(page.locator(".map-neighbors")).toContainText(
     "선택한 필터에 맞는 연결이 없습니다",
   );
@@ -329,11 +338,61 @@ test("큰 그림에서 분야·읽기 경로·전체 목차를 통해 글을 연
   await page.getByRole("button", { name: /전체 목차 ·/ }).click();
   await expect(
     page.locator('.overview-catalog a[href*="/topic/"]'),
-  ).toHaveCount(14);
+  ).toHaveCount(articles.length);
   await page.locator('.overview-catalog a[href*="/topic/joseon/"]').click();
   await expect(page).toHaveURL(/topic\/joseon\//);
   await expect(page.locator(".concept-sketch li")).toHaveCount(3);
   await page.reload();
   await expect(page.locator(".concept-sketch li")).toHaveCount(3);
+  expect(errors).toEqual([]);
+});
+
+test("추가 개념의 그림·복습·분야별 읽기 순서가 연결된다", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const id of [
+    "enlightenment",
+    "hangul",
+    "empiricism",
+    "energy",
+    "chemical-bond",
+    "cell",
+    "integral",
+  ]) {
+    await page.goto(`topic/${id}/`);
+    await expect(page.locator(".foundation-svg")).toBeVisible();
+    await expect(page.locator(".answer-options")).toHaveCount(3);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth + 1,
+      ),
+      id,
+    ).toBe(true);
+  }
+  await page.getByRole("slider", { name: "직사각형 개수" }).fill("40");
+  await expect(page.locator(".control-readout")).toContainText("1.950");
+  await page.goto("topic/energy/");
+  await page.getByRole("slider", { name: "남은 높이 비율" }).fill("0");
+  await page.getByRole("button", { name: "마찰 없음", exact: true }).click();
+  await expect(page.locator(".control-readout")).toContainText(
+    "위치 0 + 운동 70 + 내부 30 = 100 J",
+  );
+  await page.goto("topic/hangul/");
+  await page.getByRole("button", { name: "한 조합", exact: true }).click();
+  await expect(page.locator(".foundation-svg")).toContainText("ㅎ");
+  await page.goto("topic/cell/");
+  await page.getByRole("button", { name: "리보솜", exact: true }).click();
+  await expect(page.locator(".foundation-explanation")).toContainText(
+    "아미노산",
+  );
+  await page.goto("explore/?subject=chemistry");
+  await page
+    .getByRole("navigation", { name: "화학 추천 읽기 순서" })
+    .getByRole("link", { name: "화학 결합" })
+    .click();
+  await expect(page).toHaveURL(/topic\/chemical-bond\//);
+  await page.getByRole("button", { name: "이온 결합", exact: true }).click();
+  await expect(page.locator(".foundation-svg")).toContainText("격자");
   expect(errors).toEqual([]);
 });

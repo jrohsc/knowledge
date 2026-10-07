@@ -399,7 +399,7 @@ const rows: [string, string, number, number, string, string?][] = [
     1680,
     1800,
     "이성과 권위, 권리와 정치 질서에 관한 여러 흐름. 경계는 대략적이다.",
-    "french-revolution",
+    "enlightenment",
   ],
 ];
 const colors: Record<string, string> = {

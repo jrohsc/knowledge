@@ -1,3 +1,4 @@
+import { FoundationVisual } from "./FoundationVisual";
 import type { Topic } from "@/lib/schema";
 import { InteractiveFunction } from "./InteractiveFunction";
 import { ParticleSimulation } from "./ParticleSimulation";
@@ -15,6 +16,8 @@ import {
 import { ConceptSketch } from "./ConceptSketch";
 export function HeroVisual({ topic }: { topic: Topic }) {
   switch (topic.visual) {
+    case "foundation":
+      return <FoundationVisual topic={topic.id} />;
     case "derivative":
       return <InteractiveFunction />;
     case "entropy":
