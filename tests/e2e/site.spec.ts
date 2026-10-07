@@ -39,6 +39,10 @@ test("정적 자원과 모든 직접 기사 URL을 /knowledge/ 아래에서 제�
     page.getByRole("heading", { name: "엔트로피", exact: true }),
   ).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("lang", "ko");
+  await page.goto("timeline/");
+  await page.reload();
+  await page.getByRole("slider").fill("-300");
+  await expect(page.locator(".simultaneous")).toContainText("로마 공화정");
   expect(errors).toEqual([]);
   expect(bad).toEqual([]);
 });

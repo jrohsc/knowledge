@@ -222,7 +222,7 @@ export function ParallelTimeline({
                       className="timeline-band"
                     >
                       <title>
-                        {b.label} · {yearLabel(b.start)}–{yearLabel(b.end)}
+                        {`${b.label} · ${yearLabel(b.start)}–${yearLabel(b.end)}`}
                       </title>
                       <rect
                         x={left}
