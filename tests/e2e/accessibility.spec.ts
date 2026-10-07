@@ -4,6 +4,7 @@ test("핵심 페이지의 WCAG A·AA 접근성 검사", async ({ page }) => {
   for (const route of [
     "./",
     "topic/derivative/",
+    "topic/joseon/",
     "topic/periodic-table/",
     "explore/",
     "review/",

@@ -9,6 +9,7 @@ import { getArticles, getArticle, getTopics } from "@/lib/content";
 import { subjectById } from "@/content/subjects";
 import { relationships } from "@/content/relationships";
 import { HeroVisual } from "@/components/visuals/HeroVisual";
+import { ConceptSketch } from "@/components/visuals/ConceptSketch";
 import * as visuals from "@/components/visuals";
 import { ParallelTimeline } from "@/components/visuals/ParallelTimeline";
 import {
@@ -82,6 +83,7 @@ export default async function Article({
       <div className="reading-layout">
         <aside className="article-toc">
           <span className="eyebrow">이 글의 흐름</span>
+          <Link href="/#knowledge-overview">전체 지식 목차 ↗</Link>
           <a href="#overview">한눈에 보기</a>
           <a href="#why">왜 알아야 할까?</a>
           <a href="#body">배경과 핵심 내용</a>
@@ -99,6 +101,7 @@ export default async function Article({
             <span className="eyebrow">왜 알아야 할까?</span>
             <p>{t.whyItMatters}</p>
           </section>
+          {t.visual !== "history" && <ConceptSketch topic={t.id} />}
           <div id="body" className="prose">
             <MDXRemote
               source={article.content}
@@ -113,7 +116,7 @@ export default async function Article({
               }}
             />
           </div>
-          {t.timelineEvents.length > 0 && t.visual !== "history" && (
+          {t.timelineEvents.length > 0 && (
             <section className="article-section">
               <h2>시간의 흐름</h2>
               <visuals.HistoricalTimeline events={t.timelineEvents} />

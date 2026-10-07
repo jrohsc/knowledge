@@ -183,3 +183,5 @@ NEXT_PUBLIC_BASE_PATH=/new-repository npm run preview
 자동 검사는 역사·과학의 사실성을 입증하지 않습니다. 화면과 동작을 변경할 때는 밝은/어두운 테마와 모바일에서 직접 읽어보는 검토를 병행하세요.
 
 기술 설정 참고: [Next.js basePath](https://nextjs.org/docs/pages/api-reference/config/next-config-js/basePath), [Next.js static export 예제](https://github.com/vercel/next.js/tree/canary/examples/with-static-export), [GitHub Pages 사용자 정의 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
+홈페이지의 **큰 그림**에서 역사·철학·과학·수학을 선택하거나 세 가지 분야 간 읽기 경로를 재생할 수 있습니다. **전체 목차**로 전환하면 모든 글로 바로 이동합니다. 14개 글에는 개념을 설명하는 세 장면 SVG 삽화를 제공합니다. 확장 방법은 [시각화 가이드](docs/VISUALIZATIONS.md)를 참고하세요.

@@ -13,6 +13,7 @@ import type { TopicSummary as Topic } from "@/lib/schema";
 import { dailyTopics, dueTopics, localDay, streak } from "@/lib/learning";
 import { useProgress } from "./ProgressProvider";
 import { TopicList } from "./TopicList";
+import { HomeOverview } from "./HomeOverview";
 const prompts: Record<string, string> = {
   "french-revolution": "왜 오래된 정치 질서는 무너졌을까?",
   "roman-empire": "무엇이 거대한 제국을 하나로 묶었을까?",
@@ -137,7 +138,8 @@ export function Today({ topics }: { topics: Topic[] }) {
         </div>
         <EditorialOrbit />
       </section>
-      <div className="today-columns">
+      <HomeOverview topics={topics} />
+      <div className="today-columns" id="today-reading">
         <section className="daily-selection">
           <div className="section-heading">
             <h2>오늘의 지식</h2>

@@ -301,3 +301,39 @@ test("과학 설명의 각 조작이 그림과 설명에 반영된다", async ({
     "공동체로 돌아갈 책임",
   );
 });
+
+test("큰 그림에서 분야·읽기 경로·전체 목차를 통해 글을 연다", async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("./");
+  await page
+    .getByRole("group", { name: "역사·철학·과학·수학의 관계 지도" })
+    .getByRole("button", { name: /과학/ })
+    .click();
+  await expect(page.locator(".field-topic-links")).toContainText("DNA");
+  await page
+    .getByRole("button", { name: "기계에서 확률까지", exact: true })
+    .click();
+  await expect(page.locator(".path-step-count")).toHaveText("01 / 03");
+  await page.getByRole("button", { name: "다음 연결", exact: true }).click();
+  await expect(page.locator(".path-step-count")).toHaveText("02 / 03");
+  await page.getByRole("button", { name: "흐름 재생", exact: true }).click();
+  await expect(page.locator(".path-step-count")).toHaveText("03 / 03", {
+    timeout: 6000,
+  });
+  await expect(
+    page.getByRole("button", { name: "처음부터 재생" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: /전체 목차 ·/ }).click();
+  await expect(
+    page.locator('.overview-catalog a[href*="/topic/"]'),
+  ).toHaveCount(14);
+  await page.locator('.overview-catalog a[href*="/topic/joseon/"]').click();
+  await expect(page).toHaveURL(/topic\/joseon\//);
+  await expect(page.locator(".concept-sketch li")).toHaveCount(3);
+  await page.reload();
+  await expect(page.locator(".concept-sketch li")).toHaveCount(3);
+  expect(errors).toEqual([]);
+});

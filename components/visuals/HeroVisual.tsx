@@ -12,7 +12,7 @@ import {
   PeriodicRelationships,
   ScaleComparison,
 } from "./ConceptDiagrams";
-import { HistoricalTimeline, VisualFrame } from "./primitives";
+import { ConceptSketch } from "./ConceptSketch";
 export function HeroVisual({ topic }: { topic: Topic }) {
   switch (topic.visual) {
     case "derivative":
@@ -38,13 +38,6 @@ export function HeroVisual({ topic }: { topic: Topic }) {
     case "industry":
       return <ScaleComparison />;
     default:
-      return (
-        <VisualFrame
-          title="전환점을 따라 전체 흐름 읽기"
-          caption="사건 순서를 읽는 연표입니다. 항목 간 간격은 실제 시간 길이에 비례하지 않습니다. 같은 시간축의 비교는 전체 타임라인에서 볼 수 있습니다."
-        >
-          <HistoricalTimeline events={topic.timelineEvents} />
-        </VisualFrame>
-      );
+      return <ConceptSketch topic={topic.id} hero />;
   }
 }

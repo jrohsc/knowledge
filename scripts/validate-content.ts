@@ -6,6 +6,8 @@ import { parseArticle as matter } from "../lib/frontmatter";
 import { subjects } from "../content/subjects";
 import { relationships } from "../content/relationships";
 import { timelineBands } from "../content/timeline";
+import { illustrations } from "../content/illustrations";
+import { readingConnections } from "../content/learning-paths";
 const dir = path.resolve("content/articles");
 const articles = fs
   .readdirSync(dir)
@@ -117,4 +119,14 @@ for (const { file, content } of articles) {
       strict: "error",
     });
   }
+}
+
+for (const [id, illustration] of Object.entries(illustrations)) {
+  assert.ok(ids.has(id), `삽화의 글 참조: ${id}`);
+  assert.equal(illustration.beats.length, 3);
+}
+for (const connection of readingConnections) {
+  assert.ok(connection.steps.length >= 2);
+  for (const step of connection.steps)
+    assert.ok(ids.has(step.topic), `읽기 경로의 글 참조: ${step.topic}`);
 }

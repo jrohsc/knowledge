@@ -16,3 +16,5 @@ export {
   HistoricalTimeline,
   AnnotatedDiagram,
 } from "./primitives";
+
+export { ConceptSketch } from "./ConceptSketch";
